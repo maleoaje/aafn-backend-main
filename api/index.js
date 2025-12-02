@@ -65,13 +65,14 @@ app.use((err, req, res, next) => {
   res.status(400).json({ message: err.message });
 });
 
-// Serve static files from the "dist" directory
+// Serve static files from the "public" directory
 app.use("/static", express.static("public"));
 
-// Serve the index.html file for all routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// Catch-all route disabled - this is an API-only server
+// The admin and store frontends are served separately
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 const PORT = process.env.PORT || 5000;
 
@@ -87,12 +88,12 @@ app.listen(PORT, () => console.log(`server running on port ${PORT}`));
 //     origin: [
 //       "http://localhost:3000",
 //       "http://localhost:4100",
-//       "https://admin-kachabazar.vercel.app",
+//       "https://admin-allamericanfoods.vercel.app",
 //       "https://dashtar-admin.vercel.app",
-//       "https://kachabazar-store.vercel.app",
-//       "https://kachabazar-admin.netlify.app",
+//       "https://allamericanfoods-store.vercel.app",
+//       "https://allamericanfoods-admin.netlify.app",
 //       "https://dashtar-admin.netlify.app",
-//       "https://kachabazar-store-nine.vercel.app",
+//       "https://allamericanfoods-store-nine.vercel.app",
 //     ], //add your origin here instead of this
 //     methods: ["PUT", "GET", "POST", "DELETE", "PATCH", "OPTIONS"],
 //     credentials: false,
